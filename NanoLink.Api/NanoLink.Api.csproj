@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NanoLink.Contracts\NanoLink.Contracts.csproj" />
+    <ProjectReference Include="..\NanoLink.Application\NanoLink.Application.csproj" />
+    <ProjectReference Include="..\NanoLink.Infra\NanoLink.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
