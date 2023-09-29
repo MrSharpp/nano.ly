@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoLink.Api", "NanoLink.Api\NanoLink.Api.csproj", "{81E01347-756B-4574-AFEC-E0768C9A511C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoLink.Application", "NanoLink.Application\NanoLink.Application.csproj", "{F7EF43DA-8F50-4113-9416-D3F4611468F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoLink.Contracts", "NanoLink.Contracts\NanoLink.Contracts.csproj", "{59BD8968-CA93-498E-9FEC-18F3D082D897}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoLink.Domain", "NanoLink.Domain\NanoLink.Domain.csproj", "{3FB9CB70-319F-49D0-AB88-4D992A9C6245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoLink.Infra", "NanoLink.Infra\NanoLink.Infra.csproj", "{A1F62904-49E8-49E2-B33B-A8D27F7B1845}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81E01347-756B-4574-AFEC-E0768C9A511C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E01347-756B-4574-AFEC-E0768C9A511C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81E01347-756B-4574-AFEC-E0768C9A511C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81E01347-756B-4574-AFEC-E0768C9A511C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7EF43DA-8F50-4113-9416-D3F4611468F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7EF43DA-8F50-4113-9416-D3F4611468F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7EF43DA-8F50-4113-9416-D3F4611468F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7EF43DA-8F50-4113-9416-D3F4611468F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BD8968-CA93-498E-9FEC-18F3D082D897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BD8968-CA93-498E-9FEC-18F3D082D897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BD8968-CA93-498E-9FEC-18F3D082D897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BD8968-CA93-498E-9FEC-18F3D082D897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB9CB70-319F-49D0-AB88-4D992A9C6245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB9CB70-319F-49D0-AB88-4D992A9C6245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB9CB70-319F-49D0-AB88-4D992A9C6245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB9CB70-319F-49D0-AB88-4D992A9C6245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F62904-49E8-49E2-B33B-A8D27F7B1845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F62904-49E8-49E2-B33B-A8D27F7B1845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F62904-49E8-49E2-B33B-A8D27F7B1845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F62904-49E8-49E2-B33B-A8D27F7B1845}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
