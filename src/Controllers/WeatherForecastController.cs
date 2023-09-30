@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace NanoLink.Api.Controllers;
+namespace api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

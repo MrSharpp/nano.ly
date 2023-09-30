@@ -1,4 +1,4 @@
-namespace NanoLink.Api;
+namespace api;
 
 public class WeatherForecast
 {
