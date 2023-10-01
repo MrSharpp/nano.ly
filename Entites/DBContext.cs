@@ -7,6 +7,7 @@ public class PostgresDBContext : DbContext
     private readonly IConfiguration _configuration;
 
     public DbSet<Segment> Segments { get; set; }
+    public DbSet<Resource> Resources { get; set; }
 
     public PostgresDBContext(IConfiguration configuration)
     {
