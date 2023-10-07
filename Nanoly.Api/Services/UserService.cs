@@ -20,5 +20,6 @@ public class UserService
     public async Task CreateUser(User newUser)
     {
         await _dbContext.User.AddAsync(newUser);
+        await _dbContext.SaveChangesAsync();
     }
 }

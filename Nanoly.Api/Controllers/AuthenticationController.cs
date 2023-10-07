@@ -23,4 +23,10 @@ public class AuthController : ControllerBase
         return await _authService.Login(body);
     }
 
+    [HttpPost("signup")]
+    public async Task<User> Signup(RegisterRequestDTO body)
+    {
+        return await _authService.Register(body);
+    }
+
 }
