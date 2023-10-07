@@ -14,4 +14,5 @@ public class SegmentService
     {
         return await _dbContext.SpaceName.FindAsync();
     }
+
 }
