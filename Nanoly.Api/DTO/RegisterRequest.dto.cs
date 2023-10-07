@@ -1,4 +1,5 @@
 namespace Nanoly.Dto;
+using System.ComponentModel.DataAnnotations;
 
 public class RegisterRequestDTO
 {
