@@ -16,7 +16,7 @@ public class SegmentController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<Segment>> getAllSegment()
+    public async Task<ActionResult<SpaceName>> getAllSegment()
     {
         return await _segmentService.getAllSegments();
     }

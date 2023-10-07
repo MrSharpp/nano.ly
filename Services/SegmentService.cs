@@ -10,8 +10,8 @@ public class SegmentService
         _dbContext = context;
     }
 
-    public async Task<Segment> getAllSegments()
+    public async Task<SpaceName> getAllSegments()
     {
-        return await _dbContext.Segments.FindAsync();
+        return await _dbContext.SpaceName.FindAsync();
     }
 }

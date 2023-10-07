@@ -1,10 +1,10 @@
 namespace Nanoly.Entities;
 
-public class SpaceName
+public class Link
 {
     public int Id { get; set; }
     public string name { get; set; }
-    public string content { get; set; }
+    public string link { get; set; }
 
-    public int segmentId { get; set; }
+    public virtual SpaceName SpaceName { get; set; }
 }
