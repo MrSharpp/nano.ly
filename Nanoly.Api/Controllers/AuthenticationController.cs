@@ -18,13 +18,13 @@ public class AuthController : ControllerBase
 
 
     [HttpPost("login")]
-    public async Task<User> Login(LoginRequestDTO body)
+    public async Task<User> Login([FromBody] LoginRequestDTO body)
     {
         return await _authService.Login(body);
     }
 
     [HttpPost("signup")]
-    public async Task<User> Signup(RegisterRequestDTO body)
+    public async Task<User> Signup([FromBody] RegisterRequestDTO body)
     {
         return await _authService.Register(body);
     }
