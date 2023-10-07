@@ -5,7 +5,11 @@ using Nanoly.Dto;
 using Nanoly.Entities;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
-using System.Text;
+using System;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 public class AuthenticationService
 {
@@ -20,11 +24,7 @@ public class AuthenticationService
 
     public async Task<User> Login(LoginRequestDTO body)
     {
-        var user = await _userService.GetUserByEmail(body.Email);
-
-        if (user == null) throw new Exception("user with this email doesnt exsists");
-
-        return user;
+        return await _userService.GetUserByEmail(body.Email);
     }
 
     public async Task<User> Register(RegisterRequestDTO body)

@@ -18,9 +18,13 @@ public class AuthController : ControllerBase
 
 
     [HttpPost("login")]
-    public async Task<User> Login([FromBody] LoginRequestDTO body)
+    public async Task<IActionResult> LoginAsync([FromBody] LoginRequestDTO body)
     {
-        return await _authService.Login(body);
+        var user = await _authService.Login(body);
+
+        if (user == null) return BadRequest("Email doesnt exists");
+
+        return Ok(user);
     }
 
     [HttpPost("signup")]

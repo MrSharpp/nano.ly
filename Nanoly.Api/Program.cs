@@ -13,7 +13,6 @@ builder.Services.AddScoped<PostgresDBContext>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthenticationService>();
 
-
 builder.Services.AddDbContext<PostgresDBContext>();
 
 var app = builder.Build();
