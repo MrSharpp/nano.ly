@@ -1,6 +1,6 @@
 namespace Nanoly.Entities;
 
-public class Resource
+public class SpaceName
 {
     public int Id { get; set; }
     public string name { get; set; }
