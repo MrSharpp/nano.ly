@@ -10,6 +10,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<SegmentService>();
 builder.Services.AddScoped<PostgresDBContext>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthenticationService>();
+
+
 builder.Services.AddDbContext<PostgresDBContext>();
 
 var app = builder.Build();
