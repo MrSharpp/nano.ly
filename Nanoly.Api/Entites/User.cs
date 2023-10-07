@@ -2,9 +2,9 @@ namespace Nanoly.Entities;
 
 public class User
 {
-    string Id { get; set; }
+    public int Id { get; set; }
 
-    string email { get; set; }
+    public string email { get; set; }
 
-    string password { get; set; }
+    public string password { get; set; }
 }

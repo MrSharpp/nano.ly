@@ -8,6 +8,8 @@ public class PostgresDBContext : DbContext
 
     public DbSet<SpaceName> SpaceName { get; set; }
     public DbSet<Link> Link { get; set; }
+    public DbSet<User> User { get; set; }
+
 
     public PostgresDBContext(IConfiguration configuration)
     {
