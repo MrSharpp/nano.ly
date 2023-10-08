@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Expressions;
 using Nanoly.Dto;
 using Nanoly.Entities;
 using Nanoly.Services;
+using Nanoly.Utilities;
 
 namespace Nanoly.Controllers;
 
@@ -12,11 +13,13 @@ public class AuthController : ControllerBase
 {
     private readonly UserService _userService;
     private readonly TokenService _tokenService;
+    private readonly AuthenticationHelper _authenticationHelper;
 
-    public AuthController(UserService userService, TokenService tokenService)
+    public AuthController(UserService userService, TokenService tokenService, AuthenticationHelper authenticationHelper)
     {
         _userService = userService;
         _tokenService = tokenService;
+        _authenticationHelper = authenticationHelper;
     }
 
 
@@ -39,7 +42,7 @@ public class AuthController : ControllerBase
 
         if (exsist != null) return BadRequest("User with this email already exsists");
 
-        var user = new User() { email = body.Email, password = body.Password };
+        var user = new User() { email = body.Email, password = _authenticationHelper.HashPassword(body.Password) };
 
         var token = _tokenService.GenerateToken(user);
 

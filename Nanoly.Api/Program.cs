@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Nanoly.Entities;
 using Nanoly.Services;
+using Nanoly.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -29,7 +30,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<SegmentService>();
 builder.Services.AddScoped<PostgresDBContext>();
 builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<AuthenticationHelper>();
 builder.Services.AddScoped<TokenService>();
 
 
