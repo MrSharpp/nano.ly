@@ -1,4 +1,4 @@
 {
     "editor.semanticHighlighting.enabled": true,
-"csharp.semanticHighlighting.enabled": true,
+    "csharp.semanticHighlighting.enabled": true,
 }

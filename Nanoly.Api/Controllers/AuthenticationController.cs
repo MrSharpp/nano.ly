@@ -22,15 +22,17 @@ public class AuthController : ControllerBase
     {
         var user = await _authService.Login(body);
 
-        if (user == null) return BadRequest("Email doesnt exists");
+        if (user == null) return BadRequest("User doesnt exists");
 
         return Ok(user);
     }
 
     [HttpPost("signup")]
-    public async Task<User> Signup([FromBody] RegisterRequestDTO body)
+    public async Task<IActionResult> Signup([FromBody] RegisterRequestDTO body)
     {
-        return await _authService.Register(body);
+        var user = await _authService.Register(body);
+
+        return Ok(user);
     }
 
 }

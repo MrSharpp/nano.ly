@@ -1,30 +1,27 @@
 namespace Nanoly.Services;
 
-using Microsoft.EntityFrameworkCore;
 using Nanoly.Dto;
 using Nanoly.Entities;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using System;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 
 public class AuthenticationService
 {
-    private readonly PostgresDBContext _dBContext;
     private readonly UserService _userService;
+    private readonly TokenService _tokenService;
 
-    public AuthenticationService(PostgresDBContext dBContext, UserService userService)
+    public AuthenticationService(UserService userService, TokenService tokenService)
     {
-        _dBContext = dBContext;
         _userService = userService;
+        _tokenService = tokenService;
     }
 
-    public async Task<User> Login(LoginRequestDTO body)
+    public async Task<string> Login(LoginRequestDTO body)
     {
-        return await _userService.GetUserByEmail(body.Email);
+        var user = await _userService.GetUserByEmail(body.Email);
+        return _tokenService.GenerateToken(user);
     }
 
     public async Task<User> Register(RegisterRequestDTO body)

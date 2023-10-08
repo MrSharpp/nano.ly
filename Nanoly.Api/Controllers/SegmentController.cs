@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nanoly.Entities;
 using Nanoly.Services;
 
 namespace Nanoly.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class SegmentController : ControllerBase
