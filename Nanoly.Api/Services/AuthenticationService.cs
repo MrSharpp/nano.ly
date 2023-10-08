@@ -5,7 +5,8 @@ using Nanoly.Entities;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using System;
-
+using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
 
 public class AuthenticationService
 {

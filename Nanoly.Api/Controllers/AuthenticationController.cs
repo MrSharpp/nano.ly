@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Expressions;
 using Nanoly.Dto;
 using Nanoly.Entities;
 using Nanoly.Services;
@@ -9,30 +10,40 @@ namespace Nanoly.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly AuthenticationService _authService;
+    private readonly UserService _userService;
+    private readonly TokenService _tokenService;
 
-    public AuthController(AuthenticationService authenticationService)
+    public AuthController(UserService userService, TokenService tokenService)
     {
-        _authService = authenticationService;
+        _userService = userService;
+        _tokenService = tokenService;
     }
 
 
     [HttpPost("login")]
     public async Task<IActionResult> LoginAsync([FromBody] LoginRequestDTO body)
     {
-        var user = await _authService.Login(body);
+        var user = await _userService.GetUserByEmail(body.Email);
 
         if (user == null) return BadRequest("User doesnt exists");
 
-        return Ok(user);
+        var token = _tokenService.GenerateToken(user);
+
+        return Ok(token);
     }
 
     [HttpPost("signup")]
     public async Task<IActionResult> Signup([FromBody] RegisterRequestDTO body)
     {
-        var user = await _authService.Register(body);
+        var exsist = await _userService.GetUserByEmail(body.Email);
 
-        return Ok(user);
+        if (exsist != null) return BadRequest("User with this email already exsists");
+
+        var user = new User() { email = body.Email, password = body.Password };
+
+        var token = _tokenService.GenerateToken(user);
+
+        return Ok(token);
     }
 
 }
