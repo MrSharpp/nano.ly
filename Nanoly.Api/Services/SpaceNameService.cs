@@ -16,14 +16,8 @@ public class SpaceNameService
         return await _dbContext.User.Where(x => x.Id == id).SelectMany(x => x.spaceNames).ToListAsync();
     }
 
-    public async Task<SpaceName> addSpaceName(string name, string content)
+    public async Task<SpaceName> addSpaceName(SpaceName spaceName)
     {
-        var spaceName = new SpaceName()
-        {
-            name = name,
-            content = content
-        };
-
         await _dbContext.SpaceName.AddAsync(spaceName);
 
         await _dbContext.SaveChangesAsync();
