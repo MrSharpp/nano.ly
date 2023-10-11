@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Nanoly.Dto;
 using Nanoly.Services;
 using Shared.Web.MvcExtensions;
 
@@ -28,8 +29,15 @@ public class SpaceNameController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> addSpaceName()
+    public async Task<IActionResult> addSpaceName([FromBody] CreateSpaceNameRequestDTO body)
     {
-        return Ok();
+        var spaceName = await _spaceNameServic.addSpaceName(body.Name, body.Content);
+        return Ok(spaceName);
+    }
+
+    [HttpPatch("{spaceNameId}")]
+    public async Task<IActionResult> updateSpaceName([FromRoute] string spaceNameId)
+    {
+        return Ok(spaceNameId);
     }
 }
