@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Nanoly.Entities;
 
 namespace Nanoly.Services;
@@ -10,9 +11,9 @@ public class SpaceNameService
         _dbContext = context;
     }
 
-    public async Task<SpaceName> getAllSegments()
+    public async Task<List<SpaceName>> getAllSpaceNames()
     {
-        return await _dbContext.SpaceName.FindAsync();
+        return await _dbContext.SpaceName.FromSql($"SELECT * FROM \"SpaceName\"").ToListAsync();
     }
 
 }

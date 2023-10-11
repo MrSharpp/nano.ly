@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Nanoly.Services;
 using Shared.Web.MvcExtensions;
 
 
@@ -11,13 +12,18 @@ namespace Nanoly.Controllers;
 [ApiController]
 public class SpaceNameController : ControllerBase
 {
+    private readonly SpaceNameService _spaceNameServic;
+    public SpaceNameController(SpaceNameService spaceNameService)
+    {
+        _spaceNameServic = spaceNameService;
+    }
+
+
     [HttpGet("all")]
-    public IActionResult getAllSpaceNamesRelatedToUser()
+    public async Task<IActionResult> getAllSpaceNamesRelatedToUser()
     {
 
-        var userId = User.GetUserId();
-        // if (claims == null) return Ok("it is null");
-        Console.WriteLine(userId);
-        return Ok("Ok");
+        var spaceNames = await _spaceNameServic.getAllSpaceNames();
+        return Ok(spaceNames);
     }
 }
