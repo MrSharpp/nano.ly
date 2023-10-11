@@ -11,9 +11,9 @@ public class SpaceNameService
         _dbContext = context;
     }
 
-    public async Task<List<SpaceName>> getAllSpaceNames()
+    public async Task<List<SpaceName>> getAllSpaceNames(int id)
     {
-        return await _dbContext.SpaceName.FromSql($"SELECT * FROM \"SpaceName\"").ToListAsync();
+        return await _dbContext.SpaceName.FromSql($"SELECT * FROM \"SpaceName\" WHERE \"UserId\" = {id}").ToListAsync();
     }
 
 }

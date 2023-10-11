@@ -6,5 +6,4 @@ public class Link
     public string name { get; set; }
     public string link { get; set; }
 
-    public virtual SpaceName SpaceName { get; set; }
 }

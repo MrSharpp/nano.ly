@@ -22,8 +22,14 @@ public class SpaceNameController : ControllerBase
     [HttpGet("all")]
     public async Task<IActionResult> getAllSpaceNamesRelatedToUser()
     {
-
-        var spaceNames = await _spaceNameServic.getAllSpaceNames();
+        var userId = User.GetUserId();
+        var spaceNames = await _spaceNameServic.getAllSpaceNames(userId);
         return Ok(spaceNames);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> addSpaceName()
+    {
+        return Ok();
     }
 }

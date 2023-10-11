@@ -6,5 +6,5 @@ public class SpaceName
     public string name { get; set; }
     public string content { get; set; }
 
-    public int segmentId { get; set; }
+    public virtual Link[] links { get; set; }
 }
