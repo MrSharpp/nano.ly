@@ -1,5 +1,7 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Web.MvcExtensions;
 
 
 namespace Nanoly.Controllers;
@@ -12,6 +14,10 @@ public class SpaceNameController : ControllerBase
     [HttpGet]
     public IActionResult protectedRoute()
     {
-        return Ok("You have access to protected route");
+
+        var userId = User.GetUserId();
+        // if (claims == null) return Ok("it is null");
+        Console.WriteLine(userId);
+        return Ok("Ok");
     }
 }

@@ -43,6 +43,8 @@ public class AuthController : ControllerBase
 
         var user = new User() { email = body.Email, password = _authenticationHelper.HashPassword(body.Password) };
 
+        await _userService.CreateUser(user);
+
         var token = _tokenService.GenerateToken(user);
 
         return Ok(token);
