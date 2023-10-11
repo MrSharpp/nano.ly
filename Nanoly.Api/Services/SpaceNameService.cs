@@ -30,4 +30,17 @@ public class SpaceNameService
 
         return spaceName;
     }
+
+    public async void updateSpaceName(int spaceNameId, SpaceName uptSpaceName)
+    {
+        var spaceName = await _dbContext.SpaceName.Where(x => x.Id == spaceNameId).FirstAsync();
+
+        if (spaceName == null) throw new Exception("No Space Name found with this Id");
+
+        if (uptSpaceName.name != null) spaceName.name = uptSpaceName.name;
+
+        if (uptSpaceName.content != null) spaceName.content = uptSpaceName.content;
+
+        await _dbContext.SaveChangesAsync();
+    }
 }
