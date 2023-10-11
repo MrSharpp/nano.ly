@@ -50,7 +50,7 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-builder.Services.AddScoped<SegmentService>();
+builder.Services.AddScoped<SpaceNameService>();
 builder.Services.AddScoped<PostgresDBContext>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthenticationHelper>();

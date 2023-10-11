@@ -11,8 +11,8 @@ namespace Nanoly.Controllers;
 [ApiController]
 public class SpaceNameController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult protectedRoute()
+    [HttpGet("all")]
+    public IActionResult getAllSpaceNamesRelatedToUser()
     {
 
         var userId = User.GetUserId();

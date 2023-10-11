@@ -2,10 +2,10 @@ using Nanoly.Entities;
 
 namespace Nanoly.Services;
 
-public class SegmentService
+public class SpaceNameService
 {
     private readonly PostgresDBContext _dbContext;
-    public SegmentService(PostgresDBContext context)
+    public SpaceNameService(PostgresDBContext context)
     {
         _dbContext = context;
     }
