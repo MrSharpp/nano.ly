@@ -1,3 +1,5 @@
+using Nanoly.Dto;
+
 namespace Nanoly.Entities;
 
 public class SpaceName

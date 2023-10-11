@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nanoly.Dto;
@@ -24,20 +23,33 @@ public class SpaceNameController : ControllerBase
     public async Task<IActionResult> getAllSpaceNamesRelatedToUser()
     {
         var userId = User.GetUserId();
+
         var spaceNames = await _spaceNameServic.getAllSpaceNames(userId);
+
         return Ok(spaceNames);
     }
 
     [HttpPost]
     public async Task<IActionResult> addSpaceName([FromBody] CreateSpaceNameRequestDTO body)
     {
-        var spaceName = await _spaceNameServic.addSpaceName(body.Name, body.Content);
+        var spaceName = await _spaceNameServic.addSpaceName(body.SpaceName, body.Content);
+
         return Ok(spaceName);
     }
 
-    [HttpPatch("{spaceNameId}")]
-    public async Task<IActionResult> updateSpaceName([FromRoute] string spaceNameId)
+    [HttpPut("{spaceNameId}")]
+    public async Task<IActionResult> updateSpaceName([FromRoute] string spaceNameId, [FromBody] UpdateSpaceNameRequest body)
     {
+        var spaceName = await _spaceNameServic.findSpaceNameById(int.Parse(spaceNameId));
+
+        if (spaceName == null) return BadRequest("Space Name with this id not found");
+
+        if (body.SpaceName != null) spaceName.name = body.SpaceName;
+
+        if (body.Content != null) spaceName.content = body.Content;
+
+        await _spaceNameServic.updateSpaceName(spaceName);
+
         return Ok(spaceNameId);
     }
 }
