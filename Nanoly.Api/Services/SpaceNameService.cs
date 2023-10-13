@@ -36,4 +36,10 @@ public class SpaceNameService
     {
         return await _dbContext.SpaceName.FindAsync(spaceNameId);
     }
+
+    public async Task deleteSpaceName(SpaceName spaceName)
+    {
+        _dbContext.SpaceName.Remove(spaceName);
+        await _dbContext.SaveChangesAsync();
+    }
 }

@@ -59,4 +59,16 @@ public class SpaceNameController : ControllerBase
 
         return Ok(spaceNameId);
     }
+
+    [HttpDelete("{spaceNameId}")]
+    public async Task<IActionResult> deleteSPaceName([FromRoute] int spaceNameId)
+    {
+        var spaceName = new SpaceName() { Id = spaceNameId };
+
+        if (spaceName == null) BadRequest("Space name with this id not found");
+
+        await _spaceNameServic.deleteSpaceName(spaceName);
+
+        return Ok();
+    }
 }
