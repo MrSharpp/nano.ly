@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nanoly.Entities;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.Migrations
 {
     [DbContext(typeof(PostgresDBContext))]
-    partial class PostgresDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231013160741_added_foreign_key")]
+    partial class added_foreign_key
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace api.Migrations
 
                     b.HasIndex("SpaceNameId");
 
-                    b.ToTable("Link", (string)null);
+                    b.ToTable("Link");
                 });
 
             modelBuilder.Entity("Nanoly.Entities.SpaceName", b =>
@@ -71,7 +74,7 @@ namespace api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SpaceName", (string)null);
+                    b.ToTable("SpaceName");
                 });
 
             modelBuilder.Entity("Nanoly.Entities.User", b =>
@@ -92,7 +95,7 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Nanoly.Entities.Link", b =>
