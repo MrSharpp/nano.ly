@@ -12,9 +12,9 @@ public class UserService
         _dbContext = context;
     }
 
-    public async Task<User> GetUserByEmail(string email)
+    public async Task<User> GetUserByEmail(string Email)
     {
-        return await _dbContext.User.Where(x => x.email == email).FirstOrDefaultAsync();
+        return await _dbContext.User.Where(x => x.Email == Email).FirstOrDefaultAsync();
     }
 
     public async Task CreateUser(User newUser)

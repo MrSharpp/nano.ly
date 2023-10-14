@@ -4,9 +4,11 @@ public class User
 {
     public int Id { get; set; }
 
-    public string email { get; set; }
+    public required string Email { get; set; }
 
-    public string password { get; set; }
+    public required string Password { get; set; }
 
-    public virtual SpaceName[] spaceNames { get; set; }
+    public string? RefreshToken { get; set; } = null;
+
+    public virtual SpaceName[] SpaceNames { get; set; }
 }

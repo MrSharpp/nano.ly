@@ -13,7 +13,7 @@ public class SpaceNameService
 
     public async Task<List<SpaceName>> getAllSpaceNames(int id)
     {
-        return await _dbContext.User.Where(x => x.Id == id).SelectMany(x => x.spaceNames).ToListAsync();
+        return await _dbContext.User.Where(x => x.Id == id).SelectMany(x => x.SpaceNames).ToListAsync();
     }
 
     public async Task<SpaceName> addSpaceName(SpaceName spaceName)

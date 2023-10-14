@@ -41,7 +41,7 @@ public class AuthController : ControllerBase
 
         if (exsist != null) return BadRequest("User with this email already exsists");
 
-        var user = new User() { email = body.Email, password = _authenticationHelper.HashPassword(body.Password) };
+        var user = new User() { Email = body.Email, Password = _authenticationHelper.HashPassword(body.Password) };
 
         await _userService.CreateUser(user);
 
