@@ -10,7 +10,7 @@ public class SpaceName
     public string content { get; set; }
 
     [ForeignKey("User")]
-    public int UserId { get; set; }
+    required public int UserId { get; set; }
 
 
     public virtual Link[] links { get; set; }

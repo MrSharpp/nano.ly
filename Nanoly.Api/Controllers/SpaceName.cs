@@ -37,6 +37,7 @@ public class SpaceNameController : ControllerBase
         {
             name = body.SpaceName,
             content = body.Content,
+            UserId = User.GetUserId()
         };
 
         await _spaceNameServic.addSpaceName(spaceName);
