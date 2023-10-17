@@ -44,9 +44,9 @@ public class SpaceNameService
         return await _dbContext.SpaceName.FindAsync(spaceNameId);
     }
 
-    public async Task<SpaceName> getSpaceName(string name)
+    public async Task<Link> getSpaceName(string name, string? path = "/")
     {
-        return await _dbContext.SpaceName.Where(x => x.name == name).FirstOrDefaultAsync();
+        return await _dbContext.SpaceName.Where(x => x.name == name).Select(x => x.links.FirstOrDefault(x => x.name == path)).FirstOrDefaultAsync();
     }
 
     public async Task deleteSpaceName(SpaceName spaceName)

@@ -17,12 +17,28 @@ public class RouterController : ControllerBase
     [HttpGet("{spaceName}")]
     public async Task<IActionResult> SpaceNameRedirection([FromRoute] string spaceName)
     {
-        var SpaceName = await _spaceNameService.getSpaceName(spaceName);
 
-        if (SpaceName == null) return BadRequest("Space name not found with this name");
+        var link = await _spaceNameService.getSpaceName(spaceName);
 
-        HttpContext.Response.Headers.Add("Location", "http://www.google.com");
+        if (link == null) return BadRequest("Space name not found with this name");
+
+        HttpContext.Response.Headers.Add("Location", link.link);
 
         return new StatusCodeResult(303);
     }
+
+    [HttpGet("{spaceName}/{subDirective}")]
+    public async Task<IActionResult> SpaceNameRedirection([FromRoute] string spaceName, [FromRoute] string subDirective)
+    {
+
+        var link = await _spaceNameService.getSpaceName(spaceName, subDirective);
+
+        if (link == null) return BadRequest("Space name not found with this name");
+
+        HttpContext.Response.Headers.Add("Location", link.link);
+
+        return new StatusCodeResult(303);
+    }
+
+
 }
