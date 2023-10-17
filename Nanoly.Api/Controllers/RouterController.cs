@@ -18,19 +18,18 @@ public class RouterController : ControllerBase
     public async Task<IActionResult> SpaceNameRedirection([FromRoute] string spaceName)
     {
 
-        var link = await _spaceNameService.getSpaceName(spaceName);
-
-        if (link == null) return BadRequest("Space name not found with this name");
-
-        HttpContext.Response.Headers.Add("Location", link.link);
-
-        return new StatusCodeResult(303);
+        return await FindAndRedirect(spaceName);
     }
 
     [HttpGet("{spaceName}/{subDirective}")]
     public async Task<IActionResult> SpaceNameRedirection([FromRoute] string spaceName, [FromRoute] string subDirective)
     {
 
+        return await FindAndRedirect(spaceName, subDirective);
+    }
+
+    private async Task<IActionResult> FindAndRedirect(string spaceName, string subDirective = "/")
+    {
         var link = await _spaceNameService.getSpaceName(spaceName, subDirective);
 
         if (link == null) return BadRequest("Space name not found with this name");
