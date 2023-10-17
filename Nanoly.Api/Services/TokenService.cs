@@ -38,4 +38,34 @@ public class TokenService
             return Convert.ToBase64String(randomNumber);
         }
     }
+
+    public int? ValidateAccessToken(string token)
+    {
+        if (token == null) return null;
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_config["JwtSettings:Key"]);
+        try
+        {
+            var principles = tokenHandler.ValidateToken(token, new TokenValidationParameters()
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidIssuer = _config["JwtSettings:Issuer"],
+                ValidAudience = _config["JwtSettings:Audience"],
+                ValidateLifetime = false,
+            }, out SecurityToken validatedToken);
+
+            var jwtToken = (JwtSecurityToken)validatedToken;
+
+            if (jwtToken == null) return null;
+
+            return int.Parse(principles.FindFirst(ClaimTypes.NameIdentifier).Value);
+        }
+        catch (Exception _)
+        {
+            Console.WriteLine(_);
+            return null;
+        }
+    }
 }

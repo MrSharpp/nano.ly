@@ -17,6 +17,11 @@ public class UserService
         return await _dbContext.User.Where(x => x.email == Email).FirstOrDefaultAsync();
     }
 
+    public async Task<User> GetUserById(int userId)
+    {
+        return await _dbContext.User.Where(x => x.Id == userId).FirstOrDefaultAsync();
+    }
+
     public async Task CreateUser(User newUser)
     {
         await _dbContext.User.AddAsync(newUser);
@@ -28,4 +33,6 @@ public class UserService
         _dbContext.User.Update(updatedUser);
         await _dbContext.SaveChangesAsync();
     }
+
+
 }

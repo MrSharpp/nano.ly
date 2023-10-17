@@ -67,6 +67,37 @@ public class AuthController : ControllerBase
         return Ok(respo);
     }
 
+    [HttpPost("refresh")]
+    public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequestDTO body)
+    {
+        var userId = _tokenService.ValidateAccessToken(body.AccessToken);
+
+        if (userId == null)
+        {
+            return Unauthorized("invalid access token provided");
+        }
+
+        var user = await _userService.GetUserById(userId.Value);
+
+        if (user.refreshToken != body.RefreshToken)
+        {
+            return Unauthorized("refresh token invalid");
+        }
+
+        var token = _tokenService.GenerateToken(user);
+
+        var refreshToken = await GenerateRefreshToken(user);
+
+        var respo = new AuthenticationResponse()
+        {
+            AccessToken = token,
+            RefreshToken = refreshToken
+        };
+
+        return Ok(respo);
+
+    }
+
     private async Task<string> GenerateRefreshToken(User user)
     {
         var refreshToken = _tokenService.RefreshToken();
