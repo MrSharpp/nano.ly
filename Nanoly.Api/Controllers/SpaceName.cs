@@ -33,6 +33,11 @@ public class SpaceNameController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> addSpaceName([FromBody] CreateSpaceNameRequestDTO body)
     {
+        // check if space name is free to park
+        var isTaken = await _spaceNameServic.isSpaceNameTaken(body.SpaceName);
+
+        if (isTaken == true) return BadRequest("Space name is already taken parked");
+
         var spaceName = new SpaceName()
         {
             name = body.SpaceName,

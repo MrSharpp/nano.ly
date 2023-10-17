@@ -25,6 +25,13 @@ public class SpaceNameService
         return spaceName;
     }
 
+    public async Task<bool> isSpaceNameTaken(string name)
+    {
+        var count = await _dbContext.SpaceName.CountAsync(x => x.name == name);
+
+        return count > 0;
+    }
+
     public async Task updateSpaceName(SpaceName uptSpaceName)
     {
         _dbContext.SpaceName.Update(uptSpaceName);
