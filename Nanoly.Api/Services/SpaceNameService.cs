@@ -44,6 +44,11 @@ public class SpaceNameService
         return await _dbContext.SpaceName.FindAsync(spaceNameId);
     }
 
+    public async Task<SpaceName> getSpaceName(string name)
+    {
+        return await _dbContext.SpaceName.Where(x => x.name == name).FirstOrDefaultAsync();
+    }
+
     public async Task deleteSpaceName(SpaceName spaceName)
     {
         _dbContext.SpaceName.Remove(spaceName);
