@@ -31,7 +31,15 @@ public class AuthController : ControllerBase
 
         var token = _tokenService.GenerateToken(user);
 
-        return Ok(token);
+        var refreshToken = await GenerateRefreshToken(user);
+
+        var respo = new AuthenticationResponse()
+        {
+            AccessToken = token,
+            RefreshToken = refreshToken
+        };
+
+        return Ok(respo);
     }
 
     [HttpPost("signup")]
@@ -41,13 +49,33 @@ public class AuthController : ControllerBase
 
         if (exsist != null) return BadRequest("User with this email already exsists");
 
-        var user = new User() { Email = body.Email, Password = _authenticationHelper.HashPassword(body.Password) };
+        var user = new User() { email = body.Email, password = _authenticationHelper.HashPassword(body.Password) };
 
         await _userService.CreateUser(user);
 
         var token = _tokenService.GenerateToken(user);
 
-        return Ok(token);
+        var refreshToken = await GenerateRefreshToken(user);
+
+
+        var respo = new AuthenticationResponse()
+        {
+            AccessToken = token,
+            RefreshToken = refreshToken
+        };
+
+        return Ok(respo);
+    }
+
+    private async Task<string> GenerateRefreshToken(User user)
+    {
+        var refreshToken = _tokenService.RefreshToken();
+
+        user.refreshToken = refreshToken;
+
+        await _userService.UpdateUser(user);
+
+        return refreshToken;
     }
 
 }
