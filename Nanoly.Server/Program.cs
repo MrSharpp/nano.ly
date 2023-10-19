@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Nanoly.Entities;
@@ -69,6 +70,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+Console.WriteLine(Path.Combine(builder.Environment.ContentRootPath, "wwwroot"));
+
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
