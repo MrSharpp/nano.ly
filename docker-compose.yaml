@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_server
+    environment:
+      POSTGRES_DB: nanoly
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+  
+
+  webapp: 
+
+    
