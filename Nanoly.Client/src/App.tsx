@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import '@mantine/core/styles.css'
 import { useAuth } from './Providers/AuthProvider'
 import { Login } from './Features/Identity/Login'
+import { SIgnup } from './Features/Identity/Signup'
 
 function App() {
     const { isAuthenticated } = useAuth()
@@ -25,6 +26,8 @@ function PrivateRoutes() {
         <Routes>
             <Route path="" element={Navigate({ to: '/login' })} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SIgnup />} />
+
         </Routes>
     )
 }

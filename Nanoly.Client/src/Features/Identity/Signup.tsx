@@ -12,7 +12,7 @@ import {
 } from '@mantine/core'
 import classes from './Login.module.css'
 
-export function Login() {
+export function SIgnup() {
     return (
         <Container size={420} my={40}>
             <Title ta="center" className={classes.title}>
