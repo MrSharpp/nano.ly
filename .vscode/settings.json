@@ -2,7 +2,7 @@
     "editor.semanticHighlighting.enabled": true,
     "csharp.semanticHighlighting.enabled": true,
     "files.exclude": {
-        "Nanoly.Api/bin": true,
-        "Nanoly.Api/obj": true,
+        "Nanoly.Server/bin": true,
+        "Nanoly.Server/obj": true,
     }
 }
