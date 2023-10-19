@@ -9,3 +9,7 @@ docker-compose.*.yml
 */bin
 */obj
 */node_modules
+node_modules/
+bin
+obj
+Nanoly.Client/node_modules/
