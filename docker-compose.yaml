@@ -5,14 +5,21 @@ services:
     container_name: postgres_server
     environment:
       POSTGRES_DB: nanoly
-      POSTGRES_USER: root
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
     ports:
       - "5432:5432"
+    networks:
+      - new
 
   webapp: 
       build: .
       ports: 
         - "3000:80"
+      networks:
+        - new
+
+networks:
+  new:
 
     
