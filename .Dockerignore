@@ -13,3 +13,4 @@ node_modules/
 bin
 obj
 Nanoly.Client/node_modules/
+appsettings.local.json
