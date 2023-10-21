@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "program": "${workspaceFolder}/Nanoly.Server/bin/Debug/net7.0/api.dll",
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5001",
+                "ASPNETCORE_DETAILEDERRORS": "1",
+                "ASPNETCORE_SHUTDOWNTIMEOUTSECONDS": "3"
+            },
+        }
+    ]
+}

@@ -10,6 +10,9 @@ using Nanoly.Utilities;
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
+config.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
+config.AddEnvironmentVariables();
+
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(x =>
 {
