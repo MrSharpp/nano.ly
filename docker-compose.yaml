@@ -18,6 +18,11 @@ services:
         - "3000:80"
       networks:
         - new
+      environment:
+        DB_HOST: host.docker.internal
+        DB_NAME: nanoly
+        DB_USERNAME: postgres
+        DB_PASSWORD: root
 
 networks:
   new:
