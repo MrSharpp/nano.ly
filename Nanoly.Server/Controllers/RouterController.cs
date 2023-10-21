@@ -4,7 +4,7 @@ using Nanoly.Services;
 
 namespace Nanoly.Controllers;
 
-[Route("/r")]
+[Route("/route")]
 [ApiController]
 public class RouterController : ControllerBase
 {
