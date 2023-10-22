@@ -10,6 +10,14 @@ using Nanoly.Utilities;
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowededOrigin", policy =>
+    {
+        policy.AllowAnyOrigin().WithHeaders("*");
+    });
+});
+
 config.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
 config.AddEnvironmentVariables();
 
@@ -62,6 +70,7 @@ builder.Services.AddScoped<AuthenticationHelper>();
 builder.Services.AddScoped<TokenService>();
 
 
+
 builder.Services.AddDbContext<PostgresDBContext>();
 
 var app = builder.Build();
@@ -73,12 +82,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 Console.WriteLine(Path.Combine(builder.Environment.ContentRootPath, "wwwroot"));
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
+app.UseCors("AllowededOrigin");
 
 app.UseAuthentication();
 app.UseAuthorization();

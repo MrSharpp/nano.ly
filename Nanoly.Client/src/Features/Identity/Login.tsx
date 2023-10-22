@@ -44,12 +44,15 @@ export function Login() {
                     label="Email"
                     placeholder="you@mantine.dev"
                     required
+                    {...loginForm.getInputProps("email")}
                 />
                 <PasswordInput
                     label="Password"
                     placeholder="Your password"
                     required
                     mt="md"
+                    {...loginForm.getInputProps("password")}
+
                 />
                 <Group justify="space-between" mt="lg">
                     <Checkbox label="Remember me" />
@@ -57,7 +60,7 @@ export function Login() {
                         Forgot password?
                     </Anchor>
                 </Group>
-                <Button fullWidth mt="xl">
+                <Button fullWidth mt="xl" type='submit'>
                     Sign in
                 </Button>
             </Paper>
