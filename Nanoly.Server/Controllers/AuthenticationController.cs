@@ -42,16 +42,11 @@ public class AuthController : ControllerBase
 
         var refreshToken = await GenerateRefreshToken(user);
 
-        var respo = new AuthenticationResponse()
-        {
-            AccessToken = token,
-            RefreshToken = refreshToken
-        };
 
         AppendTokenToCookies(token, refreshToken);
 
 
-        return Ok(respo);
+        return Ok();
     }
 
     [HttpPost("signup")]
@@ -70,15 +65,10 @@ public class AuthController : ControllerBase
         var refreshToken = await GenerateRefreshToken(user);
 
 
-        var respo = new AuthenticationResponse()
-        {
-            AccessToken = token,
-            RefreshToken = refreshToken
-        };
 
         AppendTokenToCookies(token, refreshToken);
 
-        return Ok(respo);
+        return Ok();
     }
 
     [HttpPost("refresh")]
@@ -102,15 +92,10 @@ public class AuthController : ControllerBase
 
         var refreshToken = await GenerateRefreshToken(user);
 
-        var respo = new AuthenticationResponse()
-        {
-            AccessToken = token,
-            RefreshToken = refreshToken
-        };
 
         AppendTokenToCookies(token, refreshToken);
 
-        return Ok(respo);
+        return Ok();
 
     }
 
