@@ -27,7 +27,14 @@ public class AuthController : ControllerBase
     {
         var user = await _userService.GetUserByEmail(body.Email);
 
-        if (user == null) return BadRequest("User doesnt exists");
+        if (user == null) return BadRequest(new ErrorResponse()
+        {
+            Error = new ErrorDetails()
+            {
+                Code = "INVALID_LOGIN",
+                Message = "Invalid login, please check your credentials"
+            }
+        });
 
         var token = _tokenService.GenerateToken(user);
 

@@ -1,8 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export function ErrorResolve(axiosResponse: unknown): {key: string, message: string} | null{
+export function ErrorResolve(axiosResponse: unknown): {key: string | null, message: string} | null{
     const errors = (axiosResponse  as any)?.data?.errors
-    
-    if(Object.keys(errors).length < 1) return null
+    const appError = (axiosResponse  as any)?.data?.error as {code: string, message: string};
+
+    if(!errors || Object.keys(errors).length < 1) {
+        console.log('a')
+        if(appError){
+            return {
+                key: null,
+                message: appError.message
+            };
+        }
+    }
 
     const key = Object.keys(errors).pop() as string
 

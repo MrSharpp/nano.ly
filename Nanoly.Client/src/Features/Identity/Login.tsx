@@ -29,9 +29,11 @@ export function Login() {
         onError(data){
             const error = ErrorResolve(data.response);
             
-            if(!error) return alert("something went wrong");
+            if(!error) return loginForm.setFieldError('email', "something went wrong")
 
-            loginForm.setFieldError(error.key, error?.message);
+            if(error.key != null) return loginForm.setFieldError(error.key, error.message);
+
+            if(error.message) return loginForm.setFieldError("email", error.message);
         }
     })
 
