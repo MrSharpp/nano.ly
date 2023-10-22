@@ -13,7 +13,6 @@ import {
 import classes from './Identity.module.css'
 
 export function Login() {
-    console.log('a')
 
     return (
         <Container size={420} my={40}>
