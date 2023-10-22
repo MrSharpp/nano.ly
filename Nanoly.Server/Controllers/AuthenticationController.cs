@@ -42,11 +42,13 @@ public class AuthController : ControllerBase
 
         var refreshToken = await GenerateRefreshToken(user);
 
+        var respo = new AuthenticationResponse()
+        {
+            AccessToken = token,
+            RefreshToken = refreshToken
+        };
 
-        AppendTokenToCookies(token, refreshToken);
-
-
-        return Ok();
+        return Ok(respo);
     }
 
     [HttpPost("signup")]
@@ -65,10 +67,13 @@ public class AuthController : ControllerBase
         var refreshToken = await GenerateRefreshToken(user);
 
 
+        var respo = new AuthenticationResponse()
+        {
+            AccessToken = token,
+            RefreshToken = refreshToken
+        };
 
-        AppendTokenToCookies(token, refreshToken);
-
-        return Ok();
+        return Ok(respo);
     }
 
     [HttpPost("refresh")]
@@ -92,10 +97,13 @@ public class AuthController : ControllerBase
 
         var refreshToken = await GenerateRefreshToken(user);
 
+        var respo = new AuthenticationResponse()
+        {
+            AccessToken = token,
+            RefreshToken = refreshToken
+        };
 
-        AppendTokenToCookies(token, refreshToken);
-
-        return Ok();
+        return Ok(respo);
 
     }
 
@@ -108,13 +116,6 @@ public class AuthController : ControllerBase
         await _userService.UpdateUser(user);
 
         return refreshToken;
-    }
-
-    private void AppendTokenToCookies(string token, string refreshToken)
-    {
-        var opts = new CookieOptions { Expires = DateTime.Now.AddHours(1) };
-        Response.Cookies.Append("accessToken", token, opts);
-        Response.Cookies.Append("refreshToken", token, opts);
     }
 
 }
