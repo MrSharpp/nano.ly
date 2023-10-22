@@ -10,7 +10,7 @@ import {
     Group,
     Button,
 } from '@mantine/core'
-import classes from './Login.module.css'
+import classes from './Identity.module.css'
 
 export function SIgnup() {
     return (
