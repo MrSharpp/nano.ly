@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     TextInput,
     PasswordInput,
@@ -15,6 +16,7 @@ import {useForm, zodResolver } from '@mantine/form'
 import { ILoginSchema, LoginSchema } from './Identity.schema'
 import { useMutation } from '@tanstack/react-query'
 import { LoginApi } from './Identity.api'
+import { ErrorResolve } from '../../utils/apiErrorResolver'
 
 export function Login() {
 
@@ -23,7 +25,14 @@ export function Login() {
     })
 
     const loginMutation = useMutation({
-        mutationFn: LoginApi
+        mutationFn: LoginApi,
+        onError(data){
+            const error = ErrorResolve(data.response);
+            
+            if(typeof error == 'undefined') alert("something went wrong");
+
+            loginForm.setFieldError(error.key, error?.message);
+        }
     })
 
     return (
