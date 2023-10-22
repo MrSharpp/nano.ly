@@ -1,14 +1,10 @@
 import { axiosInstance } from "../../utils/axios.util";
+import { ILoginSchema, ISignupSchema } from "./Identity.schema";
 
-interface ILogin {
-    email: string;
-    password: string;
-}
-
-export function login(body: ILogin){
+export async function LoginApi(body: ILoginSchema){
     return axiosInstance.post("/login", body)
 }
 
-export function signup(body: ILogin){
+export async function SignupApi(body: ISignupSchema){
     return axiosInstance.post("/signup", body)
 }

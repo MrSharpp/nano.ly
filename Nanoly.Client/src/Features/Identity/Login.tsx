@@ -11,8 +11,20 @@ import {
     Button,
 } from '@mantine/core'
 import classes from './Identity.module.css'
+import {useForm, zodResolver } from '@mantine/form'
+import { ILoginSchema, LoginSchema } from './Identity.schema'
+import { useMutation } from '@tanstack/react-query'
+import { LoginApi } from './Identity.api'
 
 export function Login() {
+
+    const loginForm = useForm<ILoginSchema>({
+        validate: zodResolver(LoginSchema)
+    })
+
+    const loginMutation = useMutation({
+        mutationFn: LoginApi
+    })
 
     return (
         <Container size={420} my={40}>
@@ -26,6 +38,7 @@ export function Login() {
                 </Anchor>
             </Text>
 
+        <form onSubmit={loginForm.onSubmit(vals => loginMutation.mutate(vals))}>
             <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                 <TextInput
                     label="Email"
@@ -48,6 +61,7 @@ export function Login() {
                     Sign in
                 </Button>
             </Paper>
+            </form>
         </Container>
     )
 }
