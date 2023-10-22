@@ -12,8 +12,9 @@ export type { ILoginSchema }
 
 const SignupSchema = z.object({
     email: z.string().email(),
-    password: z.string() 
-})
+    password: z.string(),
+    confirmPassword: z.string()
+}).refine((data) => data.password == data.confirmPassword, {message: "Passwords do not match", path: ['password']})
 
 interface ISignupSchema extends z.infer<typeof SignupSchema> {}
 
