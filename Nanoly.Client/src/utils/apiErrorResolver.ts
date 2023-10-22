@@ -4,7 +4,6 @@ export function ErrorResolve(axiosResponse: unknown): {key: string | null, messa
     const appError = (axiosResponse  as any)?.data?.error as {code: string, message: string};
 
     if(!errors || Object.keys(errors).length < 1) {
-        console.log('a')
         if(appError){
             return {
                 key: null,

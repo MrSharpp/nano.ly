@@ -17,8 +17,10 @@ import { ILoginSchema, LoginSchema } from './Identity.schema'
 import { useMutation } from '@tanstack/react-query'
 import { LoginApi } from './Identity.api'
 import { ErrorResolve } from '../../utils/apiErrorResolver'
+import { useNavigate } from 'react-router-dom'
 
 export function Login() {
+    const navigate = useNavigate();
 
     const loginForm = useForm<ILoginSchema>({
         validate: zodResolver(LoginSchema)
@@ -44,7 +46,7 @@ export function Login() {
             </Title>
             <Text c="dimmed" size="sm" ta="center" mt={5}>
                 Do not have an account yet?{' '}
-                <Anchor size="sm" component="button">
+                <Anchor size="sm" component="button" onClick={() => navigate("/signup")}>
                     Create account
                 </Anchor>
             </Text>

@@ -17,14 +17,13 @@ function App() {
 function PublicRoutes() {
     return (
         <Routes>
-            <Route path="/" Component={() => 'This is'} />
+            <Route path="/" Component={() => <p>hehe</p>} />
         </Routes>
     )
 }
 function PrivateRoutes() {
     return (
         <Routes>
-            <Route path="" element={Navigate({ to: '/login' })} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SIgnup />} />
 

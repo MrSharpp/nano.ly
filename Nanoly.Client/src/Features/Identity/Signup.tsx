@@ -11,17 +11,21 @@ import {
     Button,
 } from '@mantine/core'
 import classes from './Identity.module.css'
+import { useNavigate } from 'react-router-dom'
 
 export function SIgnup() {
+
+    const navigate = useNavigate()
+
     return (
         <Container size={420} my={40}>
             <Title ta="center" className={classes.title}>
                 Welcome back!
             </Title>
             <Text c="dimmed" size="sm" ta="center" mt={5}>
-                Do not have an account yet?{' '}
-                <Anchor size="sm" component="button">
-                    Create account
+                Already have an account?{' '}
+                <Anchor size="sm" component="button" onClick={() => navigate("/login")}>
+                    Login
                 </Anchor>
             </Text>
 
@@ -44,7 +48,7 @@ export function SIgnup() {
                     </Anchor>
                 </Group>
                 <Button fullWidth mt="xl">
-                    Sign in
+                    Sign up
                 </Button>
             </Paper>
         </Container>
