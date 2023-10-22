@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Nanoly.Dto;
 using Nanoly.Entities;
@@ -46,6 +48,9 @@ public class AuthController : ControllerBase
             RefreshToken = refreshToken
         };
 
+        AppendTokenToCookies(token, refreshToken);
+
+
         return Ok(respo);
     }
 
@@ -70,6 +75,8 @@ public class AuthController : ControllerBase
             AccessToken = token,
             RefreshToken = refreshToken
         };
+
+        AppendTokenToCookies(token, refreshToken);
 
         return Ok(respo);
     }
@@ -101,6 +108,8 @@ public class AuthController : ControllerBase
             RefreshToken = refreshToken
         };
 
+        AppendTokenToCookies(token, refreshToken);
+
         return Ok(respo);
 
     }
@@ -114,6 +123,13 @@ public class AuthController : ControllerBase
         await _userService.UpdateUser(user);
 
         return refreshToken;
+    }
+
+    private void AppendTokenToCookies(string token, string refreshToken)
+    {
+        var opts = new CookieOptions { Expires = DateTime.Now.AddHours(1) };
+        Response.Cookies.Append("accessToken", token, opts);
+        Response.Cookies.Append("refreshToken", token, opts);
     }
 
 }
