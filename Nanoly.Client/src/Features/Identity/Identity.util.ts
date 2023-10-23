@@ -1,4 +1,4 @@
-export function setCookies(accessToken: string, refreshToken: string) {
-    document.cookie = `accessToken=${accessToken}; path=/`
-    document.cookie = `refreshToken=${refreshToken}; path=/`
+export function SetAuthPersistant(accessToken: string, refreshToken: string) {
+    localStorage.setItem('accessToken', accessToken)
+    localStorage.setItem('refreshToken', refreshToken)
 }

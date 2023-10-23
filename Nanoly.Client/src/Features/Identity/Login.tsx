@@ -18,7 +18,7 @@ import { useMutation } from '@tanstack/react-query'
 import { LoginApi } from './Identity.api'
 import { ErrorResolve } from '../../utils/apiErrorResolver'
 import { useNavigate } from 'react-router-dom'
-import { setCookies } from './Identity.util'
+import { SetAuthPersistant, setCookies } from './Identity.util'
 import { useAuth } from '../../Providers/AuthProvider'
 
 export function Login() {
@@ -44,7 +44,7 @@ export function Login() {
                 return loginForm.setFieldError('email', error.message)
         },
         onSuccess(data) {
-            setCookies(data.accessToken, data.refreshToken)
+            SetAuthPersistant(data.accessToken, data.refreshToken)
             login()
             navigate('/dashboard')
         },

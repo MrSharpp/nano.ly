@@ -18,7 +18,7 @@ import { useMutation } from '@tanstack/react-query'
 import { ErrorResolve } from '../../utils/apiErrorResolver'
 import { SignupApi } from './Identity.api'
 import { ISignupSchema, SignupSchema } from './Identity.schema'
-import { setCookies } from './Identity.util'
+import { SetAuthPersistant } from './Identity.util'
 
 export function SIgnup() {
     const navigate = useNavigate()
@@ -42,7 +42,7 @@ export function SIgnup() {
                 return signupForm.setFieldError('email', error.message)
         },
         onSuccess(data, variables, context) {
-            setCookies(data.accessToken, data.refreshToken)
+            SetAuthPersistant(data.accessToken, data.refreshToken)
         },
     })
 
