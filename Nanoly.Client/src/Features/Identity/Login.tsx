@@ -20,10 +20,15 @@ import { ErrorResolve } from '../../utils/apiErrorResolver'
 import { useNavigate } from 'react-router-dom'
 import { SetAuthPersistant, setCookies } from './Identity.util'
 import { useAuth } from '../../Providers/AuthProvider'
+import { useEffect } from 'react'
 
 export function Login() {
     const navigate = useNavigate()
-    const { login } = useAuth()
+    const { login, isAuthenticated } = useAuth()
+
+    useEffect(() => {
+        if (isAuthenticated) navigate('/dashboard')
+    }, [])
 
     const loginForm = useForm<ILoginSchema>({
         validate: zodResolver(LoginSchema),

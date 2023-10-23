@@ -19,9 +19,16 @@ import { ErrorResolve } from '../../utils/apiErrorResolver'
 import { SignupApi } from './Identity.api'
 import { ISignupSchema, SignupSchema } from './Identity.schema'
 import { SetAuthPersistant } from './Identity.util'
+import { useEffect } from 'react'
+import { useAuth } from '../../Providers/AuthProvider'
 
 export function SIgnup() {
     const navigate = useNavigate()
+    const { login, isAuthenticated } = useAuth()
+
+    useEffect(() => {
+        if (isAuthenticated) navigate('/dashboard')
+    }, [])
 
     const signupForm = useForm<ISignupSchema>({
         validate: zodResolver(SignupSchema),
@@ -43,6 +50,7 @@ export function SIgnup() {
         },
         onSuccess(data, variables, context) {
             SetAuthPersistant(data.accessToken, data.refreshToken)
+            login()
         },
     })
 

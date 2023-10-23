@@ -8,13 +8,11 @@ import { AuthProvider } from './Providers/AuthProvider.tsx'
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
+    <AuthProvider>
         <MantineProvider>
             <QueryClientProvider client={queryClient}>
-                <AuthProvider>
-                    <App />
-                </AuthProvider>
+                <App />
             </QueryClientProvider>
         </MantineProvider>
-    </React.StrictMode>
+    </AuthProvider>
 )
