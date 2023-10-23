@@ -5,6 +5,7 @@ import {
     useLayoutEffect,
     useState,
 } from 'react'
+import { getProfile } from './profile.api'
 
 const AuthContext = createContext({
     isAuthenticated: false,
@@ -14,6 +15,12 @@ const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+    useEffect(() => {
+        getProfile()
+            .then((_) => login())
+            .catch((_) => logout())
+    }, [])
 
     const login = () => {
         setIsAuthenticated(true)

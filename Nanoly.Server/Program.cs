@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     {
         OnMessageReceived = context =>
         {
-            context.Token = context.Request.Cookies["Identity"];
+            context.Token = context.Request.Cookies["accessToken"];
             return Task.CompletedTask;
         }
     };
