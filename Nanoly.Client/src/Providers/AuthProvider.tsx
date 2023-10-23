@@ -41,6 +41,8 @@ export function AuthProvider({ children }) {
                 )
             validateAuthenticaiton()
         }
+
+        logout()
     }
 
     const login = () => {
