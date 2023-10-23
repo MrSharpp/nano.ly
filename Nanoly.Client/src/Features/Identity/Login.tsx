@@ -12,31 +12,42 @@ import {
     Button,
 } from '@mantine/core'
 import classes from './Identity.module.css'
-import {useForm, zodResolver } from '@mantine/form'
+import { useForm, zodResolver } from '@mantine/form'
 import { ILoginSchema, LoginSchema } from './Identity.schema'
 import { useMutation } from '@tanstack/react-query'
 import { LoginApi } from './Identity.api'
 import { ErrorResolve } from '../../utils/apiErrorResolver'
 import { useNavigate } from 'react-router-dom'
+import { setCookies } from './Identity.util'
+import { useAuth } from '../../Providers/AuthProvider'
 
 export function Login() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const { login } = useAuth()
 
     const loginForm = useForm<ILoginSchema>({
-        validate: zodResolver(LoginSchema)
+        validate: zodResolver(LoginSchema),
     })
 
     const loginMutation = useMutation({
         mutationFn: LoginApi,
-        onError(data){
-            const error = ErrorResolve(data.response);
-            
-            if(!error) return loginForm.setFieldError('email', "something went wrong")
+        onError(data) {
+            const error = ErrorResolve(data.response)
 
-            if(error.key != null) return loginForm.setFieldError(error.key, error.message);
+            if (!error)
+                return loginForm.setFieldError('email', 'something went wrong')
 
-            if(error.message) return loginForm.setFieldError("email", error.message);
-        }
+            if (error.key != null)
+                return loginForm.setFieldError(error.key, error.message)
+
+            if (error.message)
+                return loginForm.setFieldError('email', error.message)
+        },
+        onSuccess(data) {
+            setCookies(data.accessToken, data.refreshToken)
+            login()
+            navigate('/dashboard')
+        },
     })
 
     return (
@@ -46,37 +57,44 @@ export function Login() {
             </Title>
             <Text c="dimmed" size="sm" ta="center" mt={5}>
                 Do not have an account yet?{' '}
-                <Anchor size="sm" component="button" onClick={() => navigate("/signup")}>
+                <Anchor
+                    size="sm"
+                    component="button"
+                    onClick={() => navigate('/signup')}
+                >
                     Create account
                 </Anchor>
             </Text>
 
-        <form onSubmit={loginForm.onSubmit(vals => loginMutation.mutate(vals))}>
-            <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                <TextInput
-                    label="Email"
-                    placeholder="you@mantine.dev"
-                    required
-                    {...loginForm.getInputProps("email")}
-                />
-                <PasswordInput
-                    label="Password"
-                    placeholder="Your password"
-                    required
-                    mt="md"
-                    {...loginForm.getInputProps("password")}
-
-                />
-                <Group justify="space-between" mt="lg">
-                    <Checkbox label="Remember me" />
-                    <Anchor component="button" size="sm">
-                        Forgot password?
-                    </Anchor>
-                </Group>
-                <Button fullWidth mt="xl" type='submit'>
-                    Sign in
-                </Button>
-            </Paper>
+            <form
+                onSubmit={loginForm.onSubmit((vals) =>
+                    loginMutation.mutate(vals)
+                )}
+            >
+                <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                    <TextInput
+                        label="Email"
+                        placeholder="you@mantine.dev"
+                        required
+                        {...loginForm.getInputProps('email')}
+                    />
+                    <PasswordInput
+                        label="Password"
+                        placeholder="Your password"
+                        required
+                        mt="md"
+                        {...loginForm.getInputProps('password')}
+                    />
+                    <Group justify="space-between" mt="lg">
+                        <Checkbox label="Remember me" />
+                        <Anchor component="button" size="sm">
+                            Forgot password?
+                        </Anchor>
+                    </Group>
+                    <Button fullWidth mt="xl" type="submit">
+                        Sign in
+                    </Button>
+                </Paper>
             </form>
         </Container>
     )

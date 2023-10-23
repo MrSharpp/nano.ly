@@ -16,28 +16,34 @@ import { useNavigate } from 'react-router-dom'
 import { useForm, zodResolver } from '@mantine/form'
 import { useMutation } from '@tanstack/react-query'
 import { ErrorResolve } from '../../utils/apiErrorResolver'
-import {  SignupApi } from './Identity.api'
-import {  ISignupSchema, SignupSchema } from './Identity.schema'
+import { SignupApi } from './Identity.api'
+import { ISignupSchema, SignupSchema } from './Identity.schema'
+import { setCookies } from './Identity.util'
 
 export function SIgnup() {
-
     const navigate = useNavigate()
 
     const signupForm = useForm<ISignupSchema>({
-        validate: zodResolver(SignupSchema)
+        validate: zodResolver(SignupSchema),
     })
 
     const signupMutation = useMutation({
         mutationFn: SignupApi,
-        onError(data){
-            const error = ErrorResolve(data.response);
-            
-            if(!error) return signupForm.setFieldError('email', "something went wrong")
+        onError(data) {
+            const error = ErrorResolve(data.response)
 
-            if(error.key != null) return signupForm.setFieldError(error.key, error.message);
+            if (!error)
+                return signupForm.setFieldError('email', 'something went wrong')
 
-            if(error.message) return signupForm.setFieldError("email", error.message);
-        }
+            if (error.key != null)
+                return signupForm.setFieldError(error.key, error.message)
+
+            if (error.message)
+                return signupForm.setFieldError('email', error.message)
+        },
+        onSuccess(data, variables, context) {
+            setCookies(data.accessToken, data.refreshToken)
+        },
     })
 
     return (
@@ -47,48 +53,52 @@ export function SIgnup() {
             </Title>
             <Text c="dimmed" size="sm" ta="center" mt={5}>
                 Already have an account?{' '}
-                <Anchor size="sm" component="button" onClick={() => navigate("/login")}>
+                <Anchor
+                    size="sm"
+                    component="button"
+                    onClick={() => navigate('/login')}
+                >
                     Login
                 </Anchor>
             </Text>
 
-        <form onSubmit={signupForm.onSubmit(vals => {
-                        const {confirmPassword, ...rest} = vals;
-                        signupMutation.mutate(rest);
-        })}>
-            <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                <TextInput
-                    label="Email"
-                    placeholder="you@mantine.dev"
-                    {...signupForm.getInputProps("email")}
-                />
+            <form
+                onSubmit={signupForm.onSubmit((vals) => {
+                    const { confirmPassword, ...rest } = vals
+                    signupMutation.mutate(rest)
+                })}
+            >
+                <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                    <TextInput
+                        label="Email"
+                        placeholder="you@mantine.dev"
+                        {...signupForm.getInputProps('email')}
+                    />
 
-                <PasswordInput
-                    label="Password"
-                    placeholder="Your password"
-                    mt="md"
-                    {...signupForm.getInputProps("password")}
-                />
+                    <PasswordInput
+                        label="Password"
+                        placeholder="Your password"
+                        mt="md"
+                        {...signupForm.getInputProps('password')}
+                    />
 
-                <PasswordInput
-                    label="Confirm Password"
-                    placeholder="Your password"
-                    
-                    mt="md"
-                    {...signupForm.getInputProps("confirmPassword")}
+                    <PasswordInput
+                        label="Confirm Password"
+                        placeholder="Your password"
+                        mt="md"
+                        {...signupForm.getInputProps('confirmPassword')}
+                    />
 
-                />
-
-                <Group justify="space-between" mt="lg">
-                    <Checkbox label="Remember me" />
-                    <Anchor component="button" size="sm">
-                        Forgot password?
-                    </Anchor>
-                </Group>
-                <Button fullWidth mt="xl" type='submit'>
-                    Sign up
-                </Button>
-            </Paper>
+                    <Group justify="space-between" mt="lg">
+                        <Checkbox label="Remember me" />
+                        <Anchor component="button" size="sm">
+                            Forgot password?
+                        </Anchor>
+                    </Group>
+                    <Button fullWidth mt="xl" type="submit">
+                        Sign up
+                    </Button>
+                </Paper>
             </form>
         </Container>
     )
