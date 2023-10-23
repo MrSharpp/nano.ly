@@ -9,8 +9,8 @@ export async function SignupApi(body: Omit<ISignupSchema, 'confirmPassword'>) {
     return axiosInstance.post('/auth/signup', body).then((res) => res.data)
 }
 
-export async function RefreshToken(refreshToken: string) {
+export async function RefreshToken(refreshToken: string, accessToken: string) {
     return axiosInstance
-        .post('/auth/refresh', { refreshToken })
+        .post('/auth/refresh', { refreshToken, accessToken })
         .then((res) => res.data)
 }

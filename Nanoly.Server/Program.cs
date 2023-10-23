@@ -35,16 +35,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true
     };
-
-    x.Events = new JwtBearerEvents
-    {
-        OnMessageReceived = context =>
-        {
-            context.Token = context.Request.Cookies["accessToken"];
-            return Task.CompletedTask;
-        }
-    };
-
 });
 
 

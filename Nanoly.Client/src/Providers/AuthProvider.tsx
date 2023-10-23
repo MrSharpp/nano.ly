@@ -30,7 +30,8 @@ export function AuthProvider({ children }) {
 
         if (isAccessTokenExpired() == true) {
             const tokens = await RefreshToken(
-                localStorage.getItem('refreshToken') as unknown as string
+                localStorage.getItem('refreshToken') as unknown as string,
+                localStorage.getItem('accessToken') as unknown as string
             ).catch(() => false)
 
             if (tokens != false)
