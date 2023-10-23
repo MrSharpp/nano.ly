@@ -15,4 +15,10 @@ export function isAccessTokenExpired() {
     return false
 }
 
+axiosInstance.interceptors.request.use((config) => {
+    config.headers.Authorization =
+        'Bearer ' + localStorage.getItem('accessToken')
+    return config
+})
+
 export { axiosInstance }
