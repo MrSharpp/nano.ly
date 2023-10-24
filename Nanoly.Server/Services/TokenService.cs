@@ -19,12 +19,12 @@ public class TokenService
     {
         var claims = new Claim[] {
             new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new(JwtRegisteredClaimNames.Email, user.email.ToString())
+            new(JwtRegisteredClaimNames.Email, user.email.ToString()),
             };
 
         var signinCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtSettings:Key"]!)), SecurityAlgorithms.HmacSha256);
 
-        var token = new JwtSecurityToken(_config["JwtSettings:Issuer"], _config["JwtSettings:Audience"], claims, null, DateTime.UtcNow.AddHours(1), signinCredentials);
+        var token = new JwtSecurityToken(_config["JwtSettings:Issuer"], _config["JwtSettings:Audience"], claims, null, DateTime.Now.AddHours(1), signinCredentials);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
