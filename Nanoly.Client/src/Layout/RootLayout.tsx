@@ -1,9 +1,11 @@
-import { AppShell, Burger } from '@mantine/core'
+import { AppShell, Burger, Button } from '@mantine/core'
 import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 export function RootLayout() {
     const [opened, setOpenned] = useState(false)
+
+    const navigate = useNavigate()
 
     const toggle = () => setOpenned(!opened)
 
@@ -18,16 +20,12 @@ export function RootLayout() {
             padding="md"
         >
             <AppShell.Header>
-                <Burger
-                    opened={opened}
-                    onClick={toggle}
-                    hiddenFrom="sm"
-                    size="sm"
-                />
-                <div>Logo</div>
+                <div onClick={() => navigate('/')}>Home</div>
             </AppShell.Header>
 
-            <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+            <AppShell.Navbar p="md">
+                <Button>Logout</Button>
+            </AppShell.Navbar>
 
             <AppShell.Main>
                 <Outlet />
