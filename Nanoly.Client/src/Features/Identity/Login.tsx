@@ -27,7 +27,7 @@ export function Login() {
     const { login, isAuthenticated } = useAuth()
 
     useEffect(() => {
-        if (isAuthenticated) navigate('/dashboard')
+        if (isAuthenticated) navigate('/app/dashboard')
     }, [isAuthenticated])
 
     const loginForm = useForm<ILoginSchema>({

@@ -15,6 +15,7 @@ import { RefreshToken } from './Features/Identity/Identity.api'
 import { SetAuthPersistant } from './Features/Identity/Identity.util'
 import { getProfile } from './Providers/profile.api'
 import { isAccessTokenExpired } from './utils/axios.util'
+import { RootLayout } from './Layout/RootLayout'
 
 const PrivateRoute = ({ children }) => {
     const { isAuthenticated } = useAuth()
@@ -55,14 +56,17 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route
-                    path="/dashboard"
-                    element={
-                        <PrivateRoute>
-                            <h1>helloworld</h1>
-                        </PrivateRoute>
-                    }
-                />
+                <Route path="/app" element={<RootLayout />}>
+                    <Route
+                        path="dashboard"
+                        element={
+                            <PrivateRoute>
+                                <h1>helloworld</h1>
+                            </PrivateRoute>
+                        }
+                    />
+                </Route>
+
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SIgnup />} />
             </Routes>
