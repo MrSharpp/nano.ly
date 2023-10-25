@@ -13,7 +13,8 @@ public class SpaceNameService
 
     public async Task<List<SpaceName>> findSpaceNames(string spaceName)
     {
-        return await _dbContext.SpaceName.Where(x => EF.Functions.Like(spaceName, x.name)).ToListAsync();
+        Console.WriteLine(spaceName + "%");
+        return await _dbContext.SpaceName.Where(x => EF.Functions.Like(x.name, spaceName + "%")).ToListAsync();
     }
 
     public async Task<List<SpaceName>> getAllSpaceNames(int id)
