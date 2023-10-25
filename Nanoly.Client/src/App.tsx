@@ -16,6 +16,7 @@ import { SetAuthPersistant } from './Features/Identity/Identity.util'
 import { getProfile } from './Providers/profile.api'
 import { isAccessTokenExpired } from './utils/axios.util'
 import { RootLayout } from './Layout/RootLayout'
+import { Home } from './Features/Home/home'
 
 const PrivateRoute = ({ children }) => {
     const { isAuthenticated } = useAuth()
@@ -56,6 +57,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Home />}></Route>
                 <Route path="/app" element={<RootLayout />}>
                     <Route
                         path="dashboard"
