@@ -1,7 +1,28 @@
 import { ActionIcon, Container, Flex, Text, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
 import { IconSearch } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
+import { searchApi } from './search.api'
 
 export function Home() {
+    const searchForm = useForm({
+        initialValues: {
+            spaceName: '',
+        },
+    })
+
+    const searchQuery = useQuery({
+        queryKey: [searchForm.values.spaceName],
+        enabled: false,
+        queryFn: () => searchApi(searchForm.values.spaceName),
+    })
+
+    const search = () => {
+        searchQuery.refetch()
+    }
+
+    console.log(searchQuery.data)
+
     return (
         <Container>
             <Flex mt={'xl'} direction={'column'} gap={'xl'} align={'center'}>
@@ -24,13 +45,18 @@ export function Home() {
                     placeholder="Search a word... eg: mrsharp"
                     w={400}
                     rightSection={
-                        <ActionIcon variant="gradient" size={'lg'}>
+                        <ActionIcon
+                            variant="gradient"
+                            size={'lg'}
+                            onClick={search}
+                        >
                             <IconSearch
                                 size={'xs'}
                                 style={{ width: '70%', height: '70%' }}
                             />
                         </ActionIcon>
                     }
+                    {...searchForm.getInputProps('spaceName')}
                 />
             </Flex>
         </Container>

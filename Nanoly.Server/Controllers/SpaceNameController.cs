@@ -19,6 +19,14 @@ public class SpaceNameController : ControllerBase
         _spaceNameServic = spaceNameService;
     }
 
+    [HttpGet("find/{spaceName}")]
+    public async Task<IActionResult> findSpaceNames([FromRoute] string spaceName)
+    {
+        var spaceNames = await _spaceNameServic.findSpaceNames(spaceName);
+
+        return Ok(spaceNames);
+    }
+
 
     [HttpGet("all")]
     public async Task<IActionResult> getAllSpaceNamesRelatedToUser()
