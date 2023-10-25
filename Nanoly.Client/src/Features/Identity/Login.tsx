@@ -28,7 +28,7 @@ export function Login() {
 
     useEffect(() => {
         if (isAuthenticated) navigate('/dashboard')
-    }, [])
+    }, [isAuthenticated])
 
     const loginForm = useForm<ILoginSchema>({
         validate: zodResolver(LoginSchema),

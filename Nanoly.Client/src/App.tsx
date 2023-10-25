@@ -44,9 +44,8 @@ function App() {
                 SetAuthPersistant(tokens.accessToken, tokens.refreshToken)
                 return validateAuthenticaiton()
             }
+            logout()
         }
-
-        logout()
     }
 
     useEffect(() => {

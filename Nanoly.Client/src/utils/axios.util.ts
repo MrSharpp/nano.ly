@@ -11,7 +11,7 @@ export function isAccessTokenExpired() {
 
     if (!token) return false
 
-    if (token.exp < Date.now()) return true
+    if (token.exp * 1000 < Date.now()) return true
     return false
 }
 

@@ -28,7 +28,7 @@ export function SIgnup() {
 
     useEffect(() => {
         if (isAuthenticated) navigate('/dashboard')
-    }, [])
+    }, [isAuthenticated])
 
     const signupForm = useForm<ISignupSchema>({
         validate: zodResolver(SignupSchema),
