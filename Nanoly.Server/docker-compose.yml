@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_server
+    environment:
+      POSTGRES_DB: nanoly
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports: 
+      - "5432:5432"
+
+
+  api:
+    build: .
+    ports:
+      - "3000:80"
+    networks:
+      - new
+    environment:
+      DB_HOST: host.docker.internal
+      DB_NAME: nanoly
+      DB_USERNAME: postgres
+      DB_PASSWORD: root
+
+networks: 
+  new: 
