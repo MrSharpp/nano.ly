@@ -15,7 +15,7 @@ services:
   api:
     build: .
     ports:
-      - "3000:80"
+      - "5122:80"
     networks:
       - new
     environment:
