@@ -2,3 +2,6 @@ obj
 bin
 out
 appsettings.local.json
+Nanoly.Client/package-lock.json
+
+
