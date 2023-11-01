@@ -25,7 +25,6 @@ export function Home() {
 
     return (
         <Container>
-            
             <Flex mt={'xl'} direction={'column'} gap={'xl'} align={'center'}>
                 <Text
                     size={'xl'}
