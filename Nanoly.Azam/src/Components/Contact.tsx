@@ -1,10 +1,13 @@
-import Header from "./Header";
 const Contact = () => {
   return (
     <>
-      <Header />
-      <section>
-        <p>Welcome to Contact Us Page!</p>
+      <section
+        style={{
+          padding: "2rem",
+          fontSize: 24,
+        }}
+      >
+        <h1>Welcome to Contact Page!</h1>
       </section>
     </>
   );

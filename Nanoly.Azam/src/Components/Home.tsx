@@ -1,10 +1,13 @@
-import Header from "./Header";
 const Home = () => {
   return (
     <>
-      <Header />
-      <section>
-        <p>Welcome to Home Page!</p>
+      <section
+        style={{
+          padding: "2rem",
+          fontSize: 24,
+        }}
+      >
+        <h1>Welcome to Home Page!</h1>
       </section>
     </>
   );
