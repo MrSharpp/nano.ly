@@ -7,9 +7,9 @@ import Home from './Pages/Home'
 import About from "./Pages/About"
 import Contactus from './Pages/Contactus'
 import AdilBlogs from './Pages/Homecomponents/AdilBlogs'
-import Amirblogs from './Pages/Homecomponents/Amirblogs'
-import Ahmadblogs from './Pages/Homecomponents/Ahmadblogs'
-import Shamsblogs from './Pages/Homecomponents/Shamsblogs'
+import Amirblogs from './Pages/Homecomponents/AmirBlogs'
+import Ahmadblogs from './Pages/Homecomponents/AhmadBlogs'
+import Shamsblogs from './Pages/Homecomponents/ShamsBlogs'
 
 
 
