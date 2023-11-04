@@ -1,4 +1,3 @@
-//import React from 'react'
 
 function Ahmadblogs() {
   return (
@@ -9,5 +8,4 @@ function Ahmadblogs() {
       </div>
   )
 }
-
 export default Ahmadblogs
