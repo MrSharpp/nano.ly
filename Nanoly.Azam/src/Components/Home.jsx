@@ -1,25 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import blogs from "../utils/constants";
 const Home = () => {
-  const navigate = useNavigate();
   return (
     <>
-      <section style={{ padding: "1rem", textAlign: "center" }}>
-        <h1 style={{ color: "darkblue", fontSize: 32 }}>Home Page!</h1>
-        <button
-          style={{
-            padding: "0.8rem",
-            backgroundColor: "white",
-            color: "darkblue",
-            borderRadius: "9px",
-            fontSize: 22,
-          }}
-          onClick={() => {
-            navigate("/order-summary");
-          }}
-        >
-          Place Order
-        </button>
-      </section>
+      <h1>List Of Blogs!</h1>
+      {blogs.map(function (blog) {
+        return (
+          <h1 key={blog.id}>
+            <Link to={blog.id}>{blog.nameOfBlog}</Link>
+          </h1>
+        );
+      })}
     </>
   );
 };
