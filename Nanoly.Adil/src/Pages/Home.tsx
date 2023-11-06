@@ -1,17 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import blogData from './blogs.dummy.json';
 
 function Home() {
-
-  const blogData = [
-    {id:1, name: "Adil Blogs",},
-    {id:2,   name: "Amir Blogs",   },
-    { id:3, name: "Shams Blogs", },
-    { id:4, name: "Ahmad Blogs",},
-  ];  
   const navigate = useNavigate();
   const handleBlogClick = (id:number ) => {
     navigate(`/blog/${id}`);
   };
+  
   return (
    <div className="home" style={{ display: "flex", gap: "40px", marginTop: "40px", justifyContent: "center", fontSize: "30px", backgroundColor: "lightblue" }}>
     {blogData.map((blog, index) => (
@@ -23,6 +18,7 @@ function Home() {
 
   );
 }
+//export default blogData;
 
 export default Home;
 
