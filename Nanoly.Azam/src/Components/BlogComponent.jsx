@@ -1,11 +1,13 @@
-const BlogComponent = (props) => {
-  const {
-    properties: { id, nameOfBlog },
-  } = props;
+import { useParams } from "react-router-dom";
+import blogs from "../utils/constants";
+import Blog from "./Blog";
+
+const BlogComponent = () => {
+  const { id } = useParams();
+  const blog = blogs.filter((blog) => blog.id === Number(id));
   return (
     <>
-      <h1>Id of Blog is : {id}</h1>
-      <h1>Name of the Blog is : {nameOfBlog}</h1>
+      <Blog properties={blog[0]} />
     </>
   );
 };
