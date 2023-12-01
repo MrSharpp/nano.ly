@@ -74,18 +74,8 @@ export function Home(props: PaperProps) {
       </Text>
 
       <Divider label="Or continue with email" labelPosition="center" my="lg" />
-      {/* <form onSubmit={form.onSubmit(() => {})}> */}
       <form onSubmit={form.onSubmit(postdata)}>
         <Stack>
-          {/* {type === 'register' && (
-            <TextInput
-              label="Name"
-              placeholder="Your name"
-              value={form.values.name}
-              onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
-              radius="md"
-            />
-            )} */}
                 {type === 'register' && (
             <TextInput
               label="Username"
